@@ -71,10 +71,10 @@ class DjViewModel(app: Application) : AndroidViewModel(app) {
     fun seek(fraction: Float) = engine.decks[0].seekSec(fraction * deck.durationSec)
     fun pauseAll() = engine.decks.forEach { it.pause() }
 
-    fun setGain(v: Float) { gain = v; engine.decks[0].gain = v }
-    fun setVolume(v: Float) { volume = v; engine.decks[0].volume = v }
-    fun setTempo(v: Float) { tempo = v; engine.decks[0].tempo = v }
-    fun setMaster(v: Float) { master = v; engine.masterGain = v }
+    @JvmName("applyGain") fun setGain(v: Float) { gain = v; engine.decks[0].gain = v }
+    @JvmName("applyVolume") fun setVolume(v: Float) { volume = v; engine.decks[0].volume = v }
+    @JvmName("applyTempo") fun setTempo(v: Float) { tempo = v; engine.decks[0].tempo = v }
+    @JvmName("applyMaster") fun setMaster(v: Float) { master = v; engine.masterGain = v }
 
     override fun onCleared() {
         loadJob?.cancel()
